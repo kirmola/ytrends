@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "questionhub"
+version = "0.1.0"
+description = ""
+authors = ["Aman Rawat <ar.rawataman@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.0.4"
+dj-database-url = "^2.1.0"
+psycopg = "^3.1.18"
+
+
+[tool.poetry.group.dev.dependencies]
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
