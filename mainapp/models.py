@@ -16,6 +16,7 @@ class Question(models.Model):
     question = models.CharField(_("Question"), max_length=200)
     question_slug = AutoSlugField(populate_from="question")
     question_category = models.CharField(_("Choices"), choices=CHOICES, max_length=50)
+    answer_history = models.JSONField(_("Answers History"), default=dict)
 
     class Meta:
         verbose_name = _("Question")

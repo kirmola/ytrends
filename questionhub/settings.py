@@ -130,5 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ##################### User installed apps #############################
 
 INSTALLED_APPS += [
-    "mainapp"
+    "mainapp",
+    "django_distill",
 ]
