@@ -2,6 +2,7 @@ from django.contrib.sitemaps import Sitemap
 from django.db.models.base import Model
 from mainapp.models import Question
 from django.urls import reverse
+from django.http import HttpResponse
 
 
 class QuestionSitemap(Sitemap):
@@ -18,5 +19,3 @@ class QuestionSitemap(Sitemap):
         return reverse("Question_detail", kwargs={
             "question_slug":obj.question_slug
         })
-    
-    
