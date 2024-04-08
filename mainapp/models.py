@@ -10,7 +10,8 @@ class Question(models.Model):
     CHOICES = {
         "what": "what",
         "why": "why",
-        "how": "how"
+        "how": "how",
+        "is": "is"
     }
 
     question = models.CharField(_("Question"), max_length=200)
