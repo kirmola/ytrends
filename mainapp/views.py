@@ -15,3 +15,10 @@ class QuestionDetailView(DetailView):
     def get_queryset(self):
         current_question_slug = self.kwargs.get("question_slug")
         return super().get_queryset().filter(question_slug=current_question_slug)
+
+
+def questionfunc():
+    for eachquestion in Question.objects.all():
+        yield {
+            "question_slug": eachquestion.question_slug
+        }

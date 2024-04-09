@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django_distill import distill_path
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import QuestionSitemap
 from . import views 
@@ -27,8 +28,8 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('mainapp.urls')),
-    path("robots.txt", views.robotstxt, name="robots"),
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap",
+    distill_path("robots.txt", views.robotstxt, name="robots"),
+    distill_path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="django.contrib.sitemaps.views.sitemap",
 )
     
 ]
