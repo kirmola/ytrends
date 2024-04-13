@@ -2,12 +2,12 @@ from typing import Any
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from .models import Question
+from .models import Video
 from django.views.generic import DetailView
 
 
-class QuestionDetailView(DetailView):
-    model = Question
+class VideoDetailView(DetailView):
+    model = Video
     template_name = "mainapp/index.html"
     slug_url_kwarg = "question_slug"
     slug_field = "question_slug"
@@ -17,8 +17,12 @@ class QuestionDetailView(DetailView):
         return super().get_queryset().filter(question_slug=current_question_slug)
 
 
-def questionfunc():
-    for eachquestion in Question.objects.all():
+def videofunc():
+    for eachquestion in Video.objects.all():
         yield {
             "question_slug": eachquestion.question_slug
         }
+
+
+def regions():
+    pass

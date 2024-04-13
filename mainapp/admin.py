@@ -1,7 +1,6 @@
 from django.contrib import admin
+from .models import Video
 
-from .models import Question
-
-@admin.register(Question)
-class QuestionAdmin(admin.ModelAdmin):
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
     pass

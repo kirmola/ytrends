@@ -1,5 +1,5 @@
 """
-URL configuration for questionhub project.
+URL configuration for ytrends project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django_distill import distill_path
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import QuestionSitemap
+# from .sitemaps import QuestionSitemap
 from . import views 
 
 sitemaps = {
-    "questions": QuestionSitemap
+    # "questions": QuestionSitemap
 }
 
 urlpatterns = [

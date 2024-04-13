@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "questionhub"
+name = "ytrends"
 version = "0.1.0"
 description = ""
 authors = ["Aman Rawat <ar.rawataman@gmail.com>"]
@@ -12,6 +12,8 @@ dj-database-url = "^2.1.0"
 psycopg = "^3.1.18"
 django-autoslug = "^1.9.9"
 django-distill = "^3.1.3"
+aiohttp = "^3.9.3"
+requests-cache = "^1.2.0"
 
 
 [tool.poetry.group.dev.dependencies]
