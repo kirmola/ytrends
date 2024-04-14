@@ -4,20 +4,20 @@
 
 {% block main_content %}
 
-{% for each in object.video_api_result %}
 <table>
     <tbody>
         <tr>
             <th>Video ID</th>
             <th>Results</th>
         </tr>
+{% for each in object.video_api_result %}
         <tr>
             <td>{{each.video_id}}</td>
             <td>{{each.video_detail}}</td>
         </tr>
         
+        {% endfor %}
     </tbody>
 </table>
-{% endfor %}
 
 {% endblock main_content %}
