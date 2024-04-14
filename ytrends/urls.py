@@ -18,11 +18,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django_distill import distill_path
 from django.contrib.sitemaps.views import sitemap
-# from .sitemaps import QuestionSitemap
+from .sitemaps import TrendingSitemap
 from . import views 
 
 sitemaps = {
-    # "questions": QuestionSitemap
+    "trending_by_date": TrendingSitemap
 }
 
 urlpatterns = [

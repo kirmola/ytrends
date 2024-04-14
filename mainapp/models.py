@@ -14,7 +14,7 @@ class Video(models.Model):
         verbose_name_plural = _("Videos")
 
     def __str__(self):
-        return self.date_fetched
+        return str(self.pk)
 
     def get_absolute_url(self):
-        return reverse("Video_detail", kwargs={"pk": self.pk})
+        return reverse("Trendbydate_detail", kwargs={"date": self.date_fetched})

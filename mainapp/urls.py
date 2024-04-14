@@ -1,12 +1,12 @@
 from django.urls import path
 from .views import (
-    VideoDetailView,
+    TrendByDateDetailView,
     videofunc,
     regions,
 )
 from django_distill import distill_path
 
 urlpatterns = [
-    # distill_path("trending-on-<int:date>-<int:month>-<int:year>/", VideoDetailView.as_view(), name="Trend_detail", distill_func=videofunc)
+    distill_path("trending-on-<slug:date>/", TrendByDateDetailView.as_view(), name="Trendbydate_detail", distill_func=videofunc)
 ]
 

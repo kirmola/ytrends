@@ -6,15 +6,15 @@ from .models import Video
 from django.views.generic import DetailView
 
 
-class VideoDetailView(DetailView):
+class TrendByDateDetailView(DetailView):
     model = Video
     template_name = "mainapp/index.html"
-    slug_url_kwarg = "question_slug"
-    slug_field = "question_slug"
+    slug_url_kwarg = "date"
+    slug_field = "date_fetched"
 
     def get_queryset(self):
-        current_question_slug = self.kwargs.get("question_slug")
-        return super().get_queryset().filter(question_slug=current_question_slug)
+        date_in_url = self.kwargs.get("date_fetched")
+        return super().get_queryset().filter(date_fetched=date_in_url)
 
 
 def videofunc():
