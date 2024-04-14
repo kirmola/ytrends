@@ -3,11 +3,10 @@ from django.db.models.base import Model
 from mainapp.models import Video
 from django.urls import reverse
 from django.http import HttpResponse
-
+from datetime import datetime
 
 class TrendingSitemap(Sitemap):
 
-    changefreq = "daily"
     limit = 50000
     protocol = "https"
 
@@ -19,3 +18,6 @@ class TrendingSitemap(Sitemap):
         return reverse("Trendbycountry_detail", kwargs={
             "cc":obj.trending_cc_id
         })
+    
+    def lastmod(self, obj):
+        return datetime.now()
