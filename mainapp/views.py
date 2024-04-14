@@ -8,7 +8,7 @@ from django.views.generic import DetailView
 
 class TrendByDateDetailView(DetailView):
     model = Video
-    template_name = "mainapp/index.html"
+    template_name = "mainapp/ytrends_tbd.html"
     slug_url_kwarg = "date"
     slug_field = "date_fetched"
 

@@ -1,14 +1,23 @@
 from os import environ
 from django.core.management.base import BaseCommand
-from ...models import Question
+from ...models import Video
 from time import sleep
-import requests
+from requests_cache import CachedSession
 from concurrent.futures import ThreadPoolExecutor
+from datetime import timedelta, date
 
 CF_AC_ID = environ['CF_AC_ID']
 CF_AUTH_TOKEN = environ['CF_AUTH_TOKEN']
 AI_MODEL = environ['CF_AI_MODEL']
 WORKER_URL = environ["CF_WORKER_URL"]
+YT_DATA_API_BASE_URL = "https://www.googleapis.com/youtube/v3/videos"
+YT_DATA_API_PARAMS = {
+    "part": "snippet",
+    "chart": "mostPopular",
+    "regionCode": "IN",
+    "maxResults": 50,
+    "key": environ["YT_DATA_API_KEY"]
+}
 
 class Command(BaseCommand):
 
@@ -16,32 +25,21 @@ class Command(BaseCommand):
         worker_url =  WORKER_URL
         model_name = AI_MODEL
 
-        questions = [each.question for each in Question.objects.all()]
+        session = CachedSession("yt_cache", expire_after=timedelta(hours=12))
 
-        for each_quest in questions[:5]:
-            data = {
-                "query":each_quest,
-                "model":model_name
-            }
-            response = requests.post(worker_url, json=data)
-            print(response.json())
+        try:
+            request = session.get(YT_DATA_API_BASE_URL, params=YT_DATA_API_PARAMS).json()
+            response =  [{
+                "video_id":each_result["id"],
+                "video_detail":each_result["snippet"]
+            } for each_result in request["items"]]
 
-        # def send_request(question):
-        #         try:
-        #             data = {
-        #                     "query": question,
-        #                     "model": model_name
-        #             }
-        #             response = requests.post(worker_url, json=data)
-        #             response.raise_for_status()
-        #             filename = f"{question}.txt"
-        #             with open(filename, "w") as f:
-        #                 f.write(response.text)
-        #             return self.stdout.write(self.style.SUCCESS(f"Request done for: {question}"))
-        #         except requests.exceptions.RequestException as e:
-        #             self.stdout.write(self.style.ERROR(f"Failed for: {question}"))
-                
 
-        # with ThreadPoolExecutor(max_workers=3) as executor:
-        #     results = executor.map(send_request, questions)
-        #     print(results.result())
+            result = Video(
+                video_api_result = response,
+                date_fetched = date.today().strftime('%Y-%m-%d')
+            )
+            result.save()
+            self.stdout.write(self.style.SUCCESS("Results saved in database"))
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f"Can't save, something wrong: {e}"))
