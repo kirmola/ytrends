@@ -13,7 +13,7 @@ class TrendByDateDetailView(DetailView):
     slug_field = "date_fetched"
 
     def get_queryset(self):
-        date_in_url = self.kwargs.get("date_fetched")
+        date_in_url = self.kwargs.get("date")
         return super().get_queryset().filter(date_fetched=date_in_url)
 
 
