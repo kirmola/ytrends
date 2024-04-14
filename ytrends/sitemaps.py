@@ -16,6 +16,6 @@ class TrendingSitemap(Sitemap):
         return Video.objects.all()
     
     def location(self, obj: Model) -> str:
-        return reverse("Trendbydate_detail", kwargs={
-            "date":obj.date_fetched
+        return reverse("Trendbycountry_detail", kwargs={
+            "cc":obj.trending_cc_id
         })

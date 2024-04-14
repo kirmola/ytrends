@@ -149,12 +149,12 @@ def fetch_video_data(cc):
             "video_detail": each_result["snippet"],
         } for each_result in request["items"]]
         
-        country_instance, created = Country.objects.get_or_create(country_code=cc, defaults={'country_name': country_codes[cc]})
+        country_instance, created = Country.objects.get_or_create(country_code=str(cc).lower(), defaults={'country_name': country_codes[cc]})
 
         result = Video(
             video_api_result=response,
-            date_fetched=date.today().strftime('%Y-%m-%d'),
-            country_code=country_instance
+            last_updated=date.today().strftime('%Y-%m-%d'),
+            trending_cc=country_instance
         )
         result.save()
         return cc, True

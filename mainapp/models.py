@@ -126,18 +126,18 @@ country_choices = [(code, name) for code, name in country_codes.items()]
 class Video(models.Model):
 
     video_api_result = models.JSONField(_("API Result"), default=list)
-    date_fetched = models.DateField(_("Fetched on:"), default=None, db_index=True)
-    country_code = models.ForeignKey("mainapp.Country", verbose_name=_("Country Code"), on_delete=models.CASCADE, to_field="country_code", default=None)
+    last_updated = models.DateField(_(""), auto_now_add=True)
+    trending_cc = models.ForeignKey("mainapp.Country", verbose_name=_("Country Code"), on_delete=models.CASCADE, default=None, to_field="country_code")
 
     class Meta:
         verbose_name = _("Video")
         verbose_name_plural = _("Videos")
 
     def __str__(self):
-        return f"Youtube Trending on: {self.date_fetched}"
+        return f"Youtube Trending on: {self.trending_cc}"
 
     def get_absolute_url(self):
-        return reverse("Trendbydate_detail", kwargs={"date": self.date_fetched})
+        return reverse("Trendbycountry_detail", kwargs={"country_code": self.country_code})
 
 
 class Country(models.Model):

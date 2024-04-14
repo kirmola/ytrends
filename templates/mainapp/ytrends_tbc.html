@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Youtube Trending in {{object.trending_cc}}{% endblock title %}
+
+{% block main_content %}
+
+<table>
+    <tbody>
+        <tr>
+            <th>Video ID</th>
+            <th>Results</th>
+        </tr>
+{% for each in object.video_api_result %}
+        <tr>
+            <td>{{each.video_id}}</td>
+            <td>{{each.video_detail}}</td>
+        </tr>
+        
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock main_content %}

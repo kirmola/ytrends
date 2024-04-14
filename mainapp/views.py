@@ -6,15 +6,16 @@ from .models import Video
 from django.views.generic import DetailView
 
 
-class TrendByDateDetailView(DetailView):
+class TrendByCountryDetailView(DetailView):
     model = Video
-    template_name = "mainapp/ytrends_tbd.html"
-    slug_url_kwarg = "date"
-    slug_field = "date_fetched"
+    template_name = "mainapp/ytrends_tbc.html"
+    slug_url_kwarg = "cc"
+    slug_field = "trending_cc"
 
     def get_queryset(self):
-        date_in_url = self.kwargs.get("date")
-        return super().get_queryset().filter(date_fetched=date_in_url)
+        country_in_url = self.kwargs.get("cc")
+        print(super().get_queryset().filter(trending_cc=country_in_url).query)
+        return super().get_queryset().filter(trending_cc=country_in_url)
 
 
 def videofunc():
