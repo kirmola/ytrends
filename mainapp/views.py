@@ -14,7 +14,6 @@ class TrendByCountryDetailView(DetailView):
 
     def get_queryset(self):
         country_in_url = self.kwargs.get("cc")
-        print(super().get_queryset().filter(trending_cc=country_in_url).query)
         return super().get_queryset().filter(trending_cc=country_in_url)
 
 

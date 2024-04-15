@@ -1,11 +1,22 @@
+{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %} | YTrends</title>
+    {% tailwind_css %}
 </head>
 <body>
+    {% comment %} <div class="container md:p-24 p-3">
+        <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
+            <div class="p-2 h-32 rounded-lg bg-gray-200">{% lorem 2 b random %}</div>
+            <div class="p-2 h-32 rounded-lg bg-gray-200 lg:col-span-2">
+                
+            </div>
+            <div class="p-2 h-32 rounded-lg bg-gray-200"></div>
+        </div>
+    </div> {% endcomment %}
     {% block main_content %}{% endblock main_content %}
 </body>
 </html>
