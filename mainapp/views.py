@@ -4,6 +4,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import Video
 from django.views.generic import DetailView
+from .models import country_codes
 
 
 class TrendByCountryDetailView(DetailView):
@@ -15,6 +16,12 @@ class TrendByCountryDetailView(DetailView):
     def get_queryset(self):
         country_in_url = self.kwargs.get("cc")
         return super().get_queryset().filter(trending_cc=country_in_url)
+
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context["countries"] = country_codes
+        return context
+    
 
 
 def videofunc():
