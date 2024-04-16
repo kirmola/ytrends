@@ -1,0 +1,14 @@
+name: Trigger Cloudflare Pages Build for YTrends
+
+on:
+  schedule:
+    - cron: '0 8 * * *'    # run at 8AM everyday
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger Cloudflare Pages Build
+        run: |
+          curl -X POST "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/0cd2d540-4ecd-455d-9d0c-3bb61d26b7f3"
