@@ -12,11 +12,11 @@
                 <ul class="grid grid-cols-1 gap-y-10 gap-x-6 overflow-auto">
                     {% for each in object.video_api_result %}
                     <li class="flex flex-col items-center sm:flex-row sm:items-start">
-                        <img src="{{each.video_detail.thumbnails.medium.url}}" alt="Thumbnail for {{each.video_detail.title}}" class="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0" width="1216" height="640">
+                        <img src="{{each.video_detail.thumbnails.high.url}}" alt="Thumbnail for {{each.video_detail.title}}" class="mb-6 shadow-md rounded-xl bg-slate-50 w-full sm:w-[17rem] sm:mb-0" width="480" height="360">
                         <div class="order-1 sm:ml-6 w-full">
                             <h3 class="mb-1 text-slate-900 font-semibold">
                                 <span class="mb-1 block text-sm leading-6 text-indigo-500"># {{forloop.counter}} on trending</span>
-                                <p class="text-lg">{{each.video_detail.title}}</p>
+                                <p class="text-lg"><a href="https://youtu.be/{{each.video_id}}">{{each.video_detail.title}}</a></p>
                             </h3>
                             <div class="prose prose-slate prose-sm text-slate-600 whitespace-normal">
                                 <p class="text-md font-semibold">Uploaded By: <a class="no-underline" href="https://www.youtube.com/channel/{{each.video_detail.channelId}}">{{each.video_detail.channelTitle}}</a></p>
