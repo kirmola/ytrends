@@ -32,10 +32,10 @@ def home(request):
 
 
 
-def videofunc():
-    for eachquestion in Video.objects.all():
+def trendingfunc():
+    for each in Video.objects.all():
         yield {
-            "question_slug": eachquestion.question_slug
+            "cc": each.trending_cc.country_code
         }
 
 
