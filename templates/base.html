@@ -8,6 +8,8 @@
     {% tailwind_css %}
 </head>
 <body>
+    {% include "layouts/header.html" %}
     {% block main_content %}{% endblock main_content %}
+    {% include "layouts/footer.html" %}
 </body>
 </html>
