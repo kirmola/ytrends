@@ -23,6 +23,14 @@ class TrendByCountryDetailView(DetailView):
         return context
     
 
+def home(request):
+
+    return render(request, "mainapp/homepage.html", {
+        "countries": country_codes
+    })
+
+
+
 
 def videofunc():
     for eachquestion in Video.objects.all():

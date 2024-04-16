@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block main_content %}
+<div class="max-w-6xl md:mx-24 mx-1">
+    <h2 class="flex flex-row flex-nowrap items-center mt-8">
+        <span class="flex-grow block border-t border-black"></span>
+        <span class="flex-wrap block mx-4 px-4 py-2.5 text-xl rounded leading-none font-medium bg-transparent text-white">
+            Explore the latest YouTube Trends in following countries
+        </span>
+        <span class="flex-grow block border-t border-black"></span>
+    </h2>
+    <div class="flex flex-wrap gap-4 p-6 justify-center text-lg font-bold">
+        {% for cc, cn in countries.items %}
+        <a href="{% url "Trendbycountry_detail" cc=cc|slugify %}"
+            class="bg-gray-100 flex-grow text-black border-l-8 border-violet-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
+            {{cn}}
+    
+            {% comment %} <div class="text-gray-500 font-thin text-sm pt-1">
+                <span>Topics: 63</span>
+                <span>MCQs: 20697</span>
+            </div> {% endcomment %}
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main_content %}
