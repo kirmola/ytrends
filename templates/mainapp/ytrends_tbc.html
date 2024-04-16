@@ -3,29 +3,37 @@
 {% block title %}Youtube Trending in {{object.trending_cc}}{% endblock title %}
 
 {% block main_content %}
-
-<ul class="grid grid-cols-1 gap-y-10 gap-x-6 items-start p-8">
-    {% for each in object.video_api_result %}
-    <li class="relative flex flex-col sm:flex-row items-start">
-        <div class="order-1 sm:ml-6">
-            <h3 class="mb-1 text-slate-900 font-semibold">
-                <span class="mb-1 block text-sm leading-6 text-indigo-500"># {{forloop.counter}} on trending</span>{{each.video_detail.title}}
-            </h3>
-            <div class="prose prose-slate prose-sm text-slate-600">
-                <p class="font-semibold">Uploaded By: <a class="no-underline" href="https://www.youtube.com/channel/{{each.video_detail.channelId}}">{{each.video_detail.channelTitle}}</a></p>
-                <p class="truncate">{{each.video_detail.description}}</p>
-                <p class="font-semibold">Tags: <span></span>{{each.video_detail.tags|join:", "}}</p>
+<div class="flex flex-wrap mx-4 max-w-7xl md:mx-24">
+    <div class="my-4 px-4 w-full lg:w-1/4"><span class="">Trending in other countries</span></div>
+    <div class="my-4 px-4 w-full lg:w-3/4"> 
+        
+        <div class="mx-1 max-w-full md:mx-auto md:max-w-7xl">
+            <div class=""> 
+                <ul class="grid grid-cols-1 gap-y-10 gap-x-6 overflow-auto">
+                    {% for each in object.video_api_result %}
+                    <li class="flex flex-col items-center sm:flex-row sm:items-start">
+                        <img src="{{each.video_detail.thumbnails.medium.url}}" alt="Thumbnail for {{each.video_detail.title}}" class="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0" width="1216" height="640">
+                        <div class="order-1 sm:ml-6 w-full">
+                            <h3 class="mb-1 text-slate-900 font-semibold">
+                                <span class="mb-1 block text-sm leading-6 text-indigo-500"># {{forloop.counter}} on trending</span>
+                                <p class="text-lg">{{each.video_detail.title}}</p>
+                            </h3>
+                            <div class="prose prose-slate prose-sm text-slate-600 whitespace-normal">
+                                <p class="text-md font-semibold">Uploaded By: <a class="no-underline" href="https://www.youtube.com/channel/{{each.video_detail.channelId}}">{{each.video_detail.channelTitle}}</a></p>
+                                <p class="text-md font-semibold">Tags: <span></span>{{each.video_detail.tags|join:", "}}</p>
+                            </div>
+                            <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 focus:ring-slate-500 mt-6" href="https://youtu.be/{{each.video_id}}">Watch on YouTube
+                                <svg class="overflow-visible ml-3 text-slate-300 group-hover:text-slate-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M0 0L3 3L0 6"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-            <a class="group inline-flex items-center h-9 rounded-full text-sm font-semibold whitespace-nowrap px-3 focus:outline-none focus:ring-2 bg-slate-100 text-slate-700 hover:bg-slate-200 hover:text-slate-900 focus:ring-slate-500 mt-6" href="https://youtu.be/{{each.video_id}}">Watch on YouTube
-                <span class="sr-only">, Completely unstyled, fully accessible UI components</span>
-                <svg class="overflow-visible ml-3 text-slate-300 group-hover:text-slate-400" width="3" height="6" viewBox="0 0 3 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M0 0L3 3L0 6"></path>
-                </svg>
-            </a>
         </div>
-        <img src="{{each.video_detail.thumbnails.medium.url}}" alt="Thumbnail for {{each.video_detail.title}}" class="mb-6 shadow-md rounded-lg bg-slate-50 w-full sm:w-[17rem] sm:mb-0" width="1216" height="640">
-    </li>
-    {% endfor %}
-</ul>
+            </div>
+</div>
 
 {% endblock main_content %}
