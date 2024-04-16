@@ -11,7 +11,7 @@ Discover what's trending on YouTube worldwide! Visit our homepage to explore the
         </span>
         <span class="flex-grow block border-t border-black"></span>
     </h2>
-    <div class="flex flex-wrap gap-4 p-6 justify-center text-lg font-bold">
+    <div class="country-list flex flex-wrap gap-4 p-6 justify-center text-lg font-bold">
         {% for cc, cn in countries.items %}
         <a href="{% url "Trendbycountry_detail" cc=cc|slugify %}"
             class="bg-gray-100 flex-grow text-black border-l-8 border-violet-500 rounded-md px-3 py-2 w-full md:w-5/12 lg:w-3/12">
@@ -25,4 +25,23 @@ Discover what's trending on YouTube worldwide! Visit our homepage to explore the
         {% endfor %}
     </div>
 </div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+const items = document.querySelectorAll('.country-list a');
+
+searchInput.addEventListener('input', function() {
+    const searchTerm = this.value.toLowerCase();
+
+    items.forEach(item => {
+        const countryName = item.textContent.toLowerCase();
+        if (countryName.includes(searchTerm)) {
+            item.style.display = 'block';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+});
+
+</script>
 {% endblock main_content %}
