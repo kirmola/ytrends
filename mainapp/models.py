@@ -126,8 +126,7 @@ country_choices = [(code, name) for code, name in country_codes.items()]
 class Video(models.Model):
 
     video_api_result = models.JSONField(_("API Result"), default=list)
-    last_updated = models.DateField(_(""), auto_now_add=True)
-    trending_cc = models.ForeignKey("mainapp.Country", verbose_name=_("Country Code"), on_delete=models.CASCADE, default=None, to_field="country_code")
+    trending_cc = models.OneToOneField("mainapp.Country", verbose_name=_("Trending CC"), on_delete=models.CASCADE, to_field="country_code")
 
     class Meta:
         verbose_name = _("Video")

@@ -163,4 +163,4 @@ cython_debug/
 #### public folder
 
 public/
-.sqlite
+yt_cache.sqlite

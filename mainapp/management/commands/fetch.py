@@ -13,7 +13,7 @@ AI_MODEL = environ['CF_AI_MODEL']
 WORKER_URL = environ["CF_WORKER_URL"]
 YT_DATA_API_BASE_URL = "https://www.googleapis.com/youtube/v3/videos"
 YT_DATA_API_PARAMS = {
-    "part": "snippet",
+    "part": ["snippet", "statistics"],
     "chart": "mostPopular",
     "maxResults": 50,
     "key": environ["YT_DATA_API_KEY"]
@@ -147,16 +147,19 @@ def fetch_video_data(cc):
         response = [{
             "video_id": each_result["id"],
             "video_detail": each_result["snippet"],
+            "stats": each_result["statistics"]
         } for each_result in request["items"]]
         
         country_instance, created = Country.objects.get_or_create(country_code=str(cc).lower(), defaults={'country_name': country_codes[cc]})
-
-        result = Video(
-            video_api_result=response,
-            last_updated=date.today().strftime('%Y-%m-%d'),
-            trending_cc=country_instance
-        )
-        result.save()
+        videos = Video.objects.filter(trending_cc=country_instance)
+        if videos.exists():
+            videos.update(video_api_result=response)
+        else:
+            result = Video(
+                video_api_result=response,
+                trending_cc=country_instance
+            )
+            result.save()
         return cc, True
     except Exception as e:
         print(e)
