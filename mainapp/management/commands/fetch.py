@@ -7,10 +7,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import timedelta, date
 
 
-CF_AC_ID = environ['CF_AC_ID']
-CF_AUTH_TOKEN = environ['CF_AUTH_TOKEN']
-AI_MODEL = environ['CF_AI_MODEL']
-WORKER_URL = environ["CF_WORKER_URL"]
+# CF_AC_ID = environ['CF_AC_ID']
+# CF_AUTH_TOKEN = environ['CF_AUTH_TOKEN']
+# AI_MODEL = environ['CF_AI_MODEL']
+# WORKER_URL = environ["CF_WORKER_URL"]
 YT_DATA_API_BASE_URL = "https://www.googleapis.com/youtube/v3/videos"
 YT_DATA_API_PARAMS = {
     "part": ["snippet", "statistics"],
@@ -168,8 +168,8 @@ def fetch_video_data(cc):
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
-        worker_url = WORKER_URL
-        model_name = AI_MODEL
+        # worker_url = WORKER_URL
+        # model_name = AI_MODEL
 
         with ThreadPoolExecutor(max_workers=50) as executor:
             futures = [executor.submit(fetch_video_data, cc) for cc in country_codes.keys()]
