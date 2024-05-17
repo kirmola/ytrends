@@ -28,8 +28,6 @@ SECRET_KEY = environ["SECRET_KEY"]
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if environ["DEBUG"] == "True" else False
 
-SITE_DOMAIN = 'ytrends.kirmola.dev'
-
 
 ALLOWED_HOSTS = ["*"]
 
@@ -44,7 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
