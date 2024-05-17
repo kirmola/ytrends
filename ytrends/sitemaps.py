@@ -16,7 +16,7 @@ class TrendingSitemap(Sitemap):
     
     def location(self, obj: Model) -> str:
         return reverse("Trendbycountry_detail", kwargs={
-            "cc":obj.trending_cc_id
+            "cc":obj.trending_cc.country_code
         })
     
     def lastmod(self, obj):

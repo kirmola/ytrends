@@ -136,7 +136,7 @@ class Video(models.Model):
         return f"Youtube Trending on: {self.trending_cc}"
 
     def get_absolute_url(self):
-        return reverse("Trendbycountry_detail", kwargs={"cc": self.trending_cc})
+        return reverse("Trendbycountry_detail", kwargs={"cc": self.trending_cc.country_code})
 
 
 class Country(models.Model):
