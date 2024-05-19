@@ -3,7 +3,7 @@ from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from .models import Video
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 from .models import country_codes
 
 
@@ -22,6 +22,9 @@ class TrendByCountryDetailView(DetailView):
         context["countries"] = country_codes
         return context
     
+
+class ContactView(TemplateView):
+    template_name = "contact.html"
 
 def home(request):
 
