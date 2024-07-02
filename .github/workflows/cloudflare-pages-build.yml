@@ -2,7 +2,7 @@ name: Trigger Cloudflare Pages Build for YTrends
 
 on:
   schedule:
-    - cron: '0 */5 * * *'    # run every 3 hour
+    - cron: '0 */12 * * *'    # run every 12 hour
 
 jobs:
   build:
